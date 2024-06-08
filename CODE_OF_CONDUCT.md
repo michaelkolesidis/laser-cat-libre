@@ -1,4 +1,4 @@
-# Contributor Covenant Code of Conduct
+# Laser Cat Libre Contributor Covenant Code of Conduct
 
 ## Our Pledge
 

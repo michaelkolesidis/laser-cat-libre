@@ -1,6 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Laser Cat Libre",
+  "author": "Michael Kolesidis",
   "version": "0.0.1",
   "description": "A cat that shoots lasers at things you want to remove from the internet.",
   "icons": {
@@ -11,13 +12,13 @@
   },
   "action": {
     "default_title": "Laser Cat Libre",
-    "default_popup": "./popup/popup.html"
+    "default_popup": "popup/popup.html"
   },
   "permissions": ["activeTab"],
   "content_scripts": [
     {
-      "js": ["scripts/content.js"],
-      "css": ["style.css"],
+      "js": ["content/content.js"],
+      "css": ["content/style.css"],
       "matches": ["<all_urls>"]
     }
   ]

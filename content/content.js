@@ -7,7 +7,7 @@ let active = false;
 let appElement;
 
 // Listen for messages from the popup
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'activate') {
     if (!added) {
       addApp();

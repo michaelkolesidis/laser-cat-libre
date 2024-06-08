@@ -1,4 +1,4 @@
-# Security Policy
+# Laser Cat Libre Security Policy
 
 ## Supported Versions
 
