@@ -1,0 +1,7 @@
+.active {
+  cursor: crosshair !important;
+}
+
+#app {
+  cursor: pointer;
+}

@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Laser Cat Libre",
+  "version": "0.0.1",
+  "description": "A cat that shoots lasers at things you want to remove from the internet.",
+  "icons": {
+    "16": "images/icon-16.png",
+    "32": "images/icon-32.png",
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "action": {
+    "default_title": "Laser Cat Libre",
+    "default_popup": "./popup/popup.html"
+  },
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "js": ["scripts/content.js"],
+      "css": ["style.css"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
