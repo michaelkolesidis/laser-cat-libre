@@ -1,6 +1,6 @@
 # Laser Cat Libre
 
-![Laser Cat](./assets/cat.svg)
+![Laser Cat](./images/cat-400px.png)
 
 A cat that shoots lasers at things you want to remove from the internet.
 
