@@ -1,17 +1,19 @@
 # Laser Cat Libre
 
+![Laser Cat](./assets/cat.svg)
+
 A cat that shoots lasers at things you want to remove from the internet.
 
 ## License
 
-## Source Code
+### Source Code
 
 <a href="https://www.gnu.org/licenses/agpl-3.0.html"><img src="https://upload.wikimedia.org/wikipedia/commons/0/06/AGPLv3_Logo.svg" height="100px" /></a>
 
 Copyright (c) 2025 Michael Kolesidis<br>
 Licensed under the [GNU Affero General Public License v3.0](https://www.gnu.org/licenses/agpl-3.0.html).
 
-## Images & Sounds
+### Images & Sounds
 
 **[Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/deed.en)**
 
