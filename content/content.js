@@ -1,14 +1,14 @@
-let added = false;
-let active = false;
+const ubremovableTags = ['HTML', 'BODY']; // The tags that are not to be removed
+let added = false; // Has the app been added to the page
+let active = false; // Is the app active
+let appElement; // The app element that has been added to the page
 
 /**
- * The app that has been added to the page
+ * Listen for messages from the popup
  */
-let appElement;
-
-// Listen for messages from the popup
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'activate') {
+    console.log('added');
     if (!added) {
       addApp();
       document.body.classList.add('active');
@@ -16,7 +16,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       // Select all elements on the page
       const allElements = document.querySelectorAll('*');
 
-      // Iterate over each element and add the 'new-class' to each one
+      // Iterate over each element and add the active class to each one
       allElements.forEach((element) => {
         element.classList.add('active');
       });
@@ -34,7 +34,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         // Select all elements on the page
         const allElements = document.querySelectorAll('*');
 
-        // Iterate over each element and add the 'new-class' to each one
+        // Iterate over each element and remove the active class to each one
         allElements.forEach((element) => {
           element.classList.remove('active');
         });
@@ -44,7 +44,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         // Select all elements on the page
         const allElements = document.querySelectorAll('*');
 
-        // Iterate over each element and add the 'new-class' to each one
+        // Iterate over each element and add the active class to each one
         allElements.forEach((element) => {
           element.classList.add('active');
         });
@@ -54,33 +54,39 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 });
 
 /**
- * Remove the element that was clicked
+ * Handle clicking
  */
-document.addEventListener('click', (e) => {
-  // The app itself should not be removable by clicking
-  if (isDescendant(e.target, appElement)) {
+function handleClick(e) {
+  const clickedTag = e.target.tagName.toUpperCase();
+
+  // Certain tag names and the app itself should not be removable by clicking
+  if (
+    isDescendant(e.target, appElement) ||
+    ubremovableTags.includes(clickedTag)
+  ) {
     return;
   }
 
   if (active) {
-    // Prevent the default action
-    e.preventDefault();
-
-    // Stop the event from propagating to parent elements
-    e.stopPropagation();
+    stopEvent(e);
 
     // Get the element that was clicked
-    const target = e.target;
+    const { target } = e;
 
-    // Remove the element
+    // Remove the element that was clicked
     target.parentNode.removeChild(target);
   }
-});
+}
+
+/**
+ * Listen from clicks
+ */
+document.addEventListener('click', (e) => handleClick(e));
 
 /**
  * The function that adds the app into the page
  */
-const addApp = () => {
+function addApp() {
   const app = document.createElement('div');
   app.style.width = '150px';
   app.style.position = 'fixed';
@@ -192,13 +198,13 @@ const addApp = () => {
 `;
 
   document.body.appendChild(app);
-};
+}
 
 /**
- * Function that returns whether the element
- * is a child of a given parent at any depth.
+ * Returns whether the element is a child
+ * of a given parent at any depth.
  */
-const isDescendant = (target, parent) => {
+function isDescendant(target, parent) {
   while (target !== null) {
     if (target === parent) {
       return true;
@@ -206,4 +212,13 @@ const isDescendant = (target, parent) => {
     target = target.parentNode;
   }
   return false;
-};
+}
+
+/**
+ * Stops the click event.
+ */
+function stopEvent(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  e.stopImmediatePropagation();
+}
