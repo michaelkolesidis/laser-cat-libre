@@ -5,7 +5,3 @@
 #app {
   cursor: pointer !important;
 }
-
-#laser-cat {
-  pointer-events: all;
-}
